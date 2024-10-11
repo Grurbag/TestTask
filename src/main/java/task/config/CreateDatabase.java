@@ -15,10 +15,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/*
- * Задание 1.
- */
-
 @Configuration
 public class CreateDatabase {
 
@@ -36,7 +32,7 @@ public class CreateDatabase {
         AtomicInteger id = new AtomicInteger();
         return args -> {
             for (int i = 0; i < 100; i++) {
-                logger.info("Preloading " + repository.save(new Employee(id.getAndIncrement(), randomNames.get(random.nextInt(randomNames.size())), randomSurnames.get(random.nextInt(randomSurnames.size())), LocalDate.parse(generateRandomDate(random), dateTimeFormatter), randomDepartment.get(random.nextInt(randomDepartment.size())), 40000 + random.nextInt(5000))));
+                logger.info("Preloading " + repository.save(new Employee(id.getAndIncrement(), randomNames.get(random.nextInt(randomNames.size())), randomSurnames.get(random.nextInt(randomSurnames.size())), LocalDate.parse(generateRandomDate(random), dateTimeFormatter), randomDepartment.get(random.nextInt(randomDepartment.size())), ThreadLocalRandom.current().nextInt(25000, 150000))));
             }
         };
     }

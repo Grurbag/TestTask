@@ -1,6 +1,7 @@
 package task.service;
 
 import task.entity.Employee;
+import task.repository.EmployeeRepository;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -33,8 +34,9 @@ public class EmployeeService {
     public Employee findById(int id) {
         try {
             ResultSet result = executeQuery("SELECT * FROM sys.employee where id=" + id);
-            if (result.next())
+            if (result.next()) {
                 return new Employee(result);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
